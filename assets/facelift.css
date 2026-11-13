@@ -970,3 +970,22 @@ body.facelift .product-form__submit.button.button:not([disabled]):hover::after {
   --border-offset: 0px;
   transition: none;
 }
+
+/* ---------- Add to cart: uppercase, no shadow ---------- */
+
+body.facelift .product-form__submit.button.button {
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  box-shadow: none;
+}
+
+body.facelift .product-form__submit.button.button::before {
+  box-shadow: none;
+}
+
+/* Keep a visible keyboard focus without using a shadow */
+body.facelift .product-form__submit.button.button:focus-visible {
+  box-shadow: none;
+  outline: 2px solid rgb(var(--color-foreground));
+  outline-offset: 3px;
+}
