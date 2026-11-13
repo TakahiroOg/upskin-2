@@ -1,51 +1,52 @@
 /*
- * Stamp design layer (navy / cream / yellow).
- * Loaded only by layout/theme.stamp.liquid (used by templates/product.eyebrow-stamp.json),
- * on top of nookly-deskwarm.css. Everything is scoped to body.stamp, so no other template is affected.
- * Colours come from the theme colour schemes (scheme-stamp-*); this file only adds the accents.
+ * Facelift design layer (navy / cream / yellow).
+ * Loaded only by layout/theme.facelift.liquid (used by templates/product.facelift-device.json),
+ * on top of nookly-deskwarm.css. Everything is scoped to body.facelift, so no other template is affected.
+ * Colours come from the theme colour schemes (scheme-facelift-*); this file only adds the accents.
  */
 
-body.stamp {
-  --stamp-navy: #162b72;
-  --stamp-yellow: #ffd60a;
-  --stamp-green: #1b7f3b;
-  --stamp-line: rgba(22, 43, 114, 0.18);
-  --stamp-serif: 'Instrument Serif', 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+body.facelift {
+  --facelift-berry: #111111;
+  --facelift-pink: #111111;
+  --facelift-star: #f5a623;
+  --facelift-green: #1b7f3b;
+  --facelift-line: rgba(17, 17, 17, 0.18);
+  --facelift-serif: 'Instrument Serif', 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
 }
 
-/* ---------- Italic serif accent inside headings: "Even, full brows <em>in one stamp.</em>" ---------- */
+/* ---------- Emphasis (plain, no serif) inside headings: "Even, full brows <em>in one session.</em>" ---------- */
 
-body.stamp :is(h1, h2, h3, .h0, .h1, .h2, .h3) em {
-  font-family: var(--stamp-serif);
-  font-style: italic;
-  font-weight: 400;
-  font-size: 1.12em;
+body.facelift :is(h1, h2, h3, .h0, .h1, .h2, .h3) em {
+  font-family: inherit;
+  font-style: normal;
+  font-weight: inherit;
+  font-size: inherit;
   letter-spacing: 0;
 }
 
 /* Buttons: sentence case, like the reference */
-body.stamp :is(.button, .shopify-challenge__button, .customer button, .shopify-payment-button__button--unbranded) {
+body.facelift :is(.button, .shopify-challenge__button, .customer button, .shopify-payment-button__button--unbranded) {
   text-transform: none;
   letter-spacing: 0;
 }
 
 /* ---------- Star rating (reviews, before/after cards) ---------- */
 
-body.stamp .stamp-stars {
-  --stamp-star-size: 1.5rem;
+body.facelift .facelift-stars {
+  --facelift-star-size: 1.5rem;
   display: inline-block;
-  font-size: var(--stamp-star-size);
+  font-size: var(--facelift-star-size);
   line-height: 1;
   letter-spacing: 0.1em;
   font-family: Times, serif;
 }
 
-body.stamp .stamp-stars::before {
+body.facelift .facelift-stars::before {
   content: '★★★★★';
   background: linear-gradient(
     90deg,
-    var(--stamp-yellow) calc(var(--stamp-rating, 5) / 5 * 100%),
-    rgba(22, 43, 114, 0.2) calc(var(--stamp-rating, 5) / 5 * 100%)
+    var(--facelift-star) calc(var(--facelift-rating, 5) / 5 * 100%),
+    rgba(17, 17, 17, 0.2) calc(var(--facelift-rating, 5) / 5 * 100%)
   );
   -webkit-background-clip: text;
   background-clip: text;
@@ -55,54 +56,54 @@ body.stamp .stamp-stars::before {
 
 /* ---------- Product block ---------- */
 
-body.stamp .rating-wrapper {
+body.facelift .rating-wrapper {
   margin: 0;
 }
 
-body.stamp .rating-wrapper .rating-star {
-  --color-rating-star: var(--stamp-yellow);
+body.facelift .rating-wrapper .rating-star {
+  --color-rating-star: var(--facelift-star);
 }
 
-body.stamp .product__title .h1,
-body.stamp .product__title h1 {
+body.facelift .product__title .h1,
+body.facelift .product__title h1 {
   font-size: 1.5rem;
   font-weight: 700;
   line-height: 1.3;
   letter-spacing: 0;
 }
 
-body.stamp .stamp-product-heading {
+body.facelift .facelift-product-heading {
   margin: 0;
 }
 
-body.stamp .product__info-container .product__text.subtitle {
+body.facelift .product__info-container .product__text.subtitle {
   font-size: 1.7rem;
   line-height: 1.5;
 }
 
 /* Checklist with ticks */
 
-body.stamp .stamp-checklist ul {
+body.facelift .facelift-checklist ul {
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-body.stamp .stamp-checklist li {
+body.facelift .facelift-checklist li {
   position: relative;
   padding-left: 2.8rem;
   font-weight: 500;
 }
 
-body.stamp .stamp-checklist li + li {
+body.facelift .facelift-checklist li + li {
   margin-top: 0.8rem;
 }
 
-body.stamp .stamp-checklist li p {
+body.facelift .facelift-checklist li p {
   margin: 0;
 }
 
-body.stamp .stamp-checklist li::before {
+body.facelift .facelift-checklist li::before {
   content: '';
   position: absolute;
   left: 0;
@@ -115,25 +116,25 @@ body.stamp .stamp-checklist li::before {
 
 /* Option legends and pills */
 
-body.stamp .product-form__input--swatch .form__label,
-body.stamp .product-form__input--pill .form__label {
+body.facelift .product-form__input--swatch .form__label,
+body.facelift .product-form__input--pill .form__label {
   font-weight: 600;
 }
 
-body.stamp .product-form__input--pill {
+body.facelift .product-form__input--pill {
   margin: 0;
 }
 
 /* ---------- Kit cards ("How many would you like?") ---------- */
 
-body.stamp .product-form__input--kits {
+body.facelift .product-form__input--kits {
   border: 0;
   margin: 0;
   padding: 0;
   min-width: 0;
 }
 
-body.stamp .stamp-kits__legend {
+body.facelift .facelift-kits__legend {
   display: block;
   margin: 0 0 1.2rem;
   padding: 0;
@@ -145,17 +146,17 @@ body.stamp .stamp-kits__legend {
   opacity: 0.85;
 }
 
-body.stamp .stamp-kits__list {
+body.facelift .facelift-kits__list {
   display: grid;
   gap: 1rem;
 }
 
-body.stamp .stamp-kits__item {
+body.facelift .facelift-kits__item {
   position: relative;
 }
 
 /* the real radio stays in the page for keyboard use, price updates and Add to cart */
-body.stamp .stamp-kits__item input[type='radio'] {
+body.facelift .facelift-kits__item input[type='radio'] {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -164,14 +165,14 @@ body.stamp .stamp-kits__item input[type='radio'] {
   pointer-events: none;
 }
 
-body.stamp .stamp-kits__card {
+body.facelift .facelift-kits__card {
   position: relative;
   display: grid;
   grid-template-columns: auto auto minmax(0, 1fr) auto;
   align-items: center;
   column-gap: 1.2rem;
   padding: 1.4rem 1.6rem;
-  border: 0.15rem solid var(--stamp-line);
+  border: 0.15rem solid var(--facelift-line);
   border-radius: 1.8rem;
   background: #fff;
   cursor: pointer;
@@ -179,79 +180,79 @@ body.stamp .stamp-kits__card {
   color: rgb(var(--color-foreground));
 }
 
-body.stamp .stamp-kits__item input[type='radio']:checked + .stamp-kits__card {
-  border-color: var(--stamp-navy);
-  box-shadow: 0 0 0 0.1rem var(--stamp-navy);
+body.facelift .facelift-kits__item input[type='radio']:checked + .facelift-kits__card {
+  border-color: var(--facelift-berry);
+  box-shadow: 0 0 0 0.1rem var(--facelift-berry);
   background: #f3f5fc;
 }
 
-body.stamp .stamp-kits__item input[type='radio']:focus-visible + .stamp-kits__card {
-  outline: 0.3rem solid var(--stamp-navy);
+body.facelift .facelift-kits__item input[type='radio']:focus-visible + .facelift-kits__card {
+  outline: 0.3rem solid var(--facelift-berry);
   outline-offset: 0.3rem;
 }
 
-body.stamp .stamp-kits__item input[type='radio']:disabled + .stamp-kits__card,
-body.stamp .stamp-kits__item input[type='radio'].disabled + .stamp-kits__card {
+body.facelift .facelift-kits__item input[type='radio']:disabled + .facelift-kits__card,
+body.facelift .facelift-kits__item input[type='radio'].disabled + .facelift-kits__card {
   opacity: 0.55;
 }
 
-body.stamp .stamp-kits__radio {
+body.facelift .facelift-kits__radio {
   width: 2.2rem;
   height: 2.2rem;
-  border: 0.2rem solid var(--stamp-navy);
+  border: 0.2rem solid var(--facelift-berry);
   border-radius: 50%;
   background: #fff;
   box-sizing: border-box;
 }
 
-body.stamp .stamp-kits__item input[type='radio']:checked + .stamp-kits__card .stamp-kits__radio {
-  background: radial-gradient(circle, var(--stamp-navy) 0 42%, #fff 46%);
+body.facelift .facelift-kits__item input[type='radio']:checked + .facelift-kits__card .facelift-kits__radio {
+  background: radial-gradient(circle, var(--facelift-berry) 0 42%, #fff 46%);
 }
 
-body.stamp .stamp-kits__thumb {
+body.facelift .facelift-kits__thumb {
   display: block;
   width: 5.6rem;
   height: 5.6rem;
   border-radius: 1.2rem;
   overflow: hidden;
-  background: #fcf7ea;
+  background: #fafafa;
 }
 
-body.stamp .stamp-kits__thumb img,
-body.stamp .stamp-kits__thumb svg {
+body.facelift .facelift-kits__thumb img,
+body.facelift .facelift-kits__thumb svg {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-body.stamp .stamp-kits__body {
+body.facelift .facelift-kits__body {
   display: flex;
   flex-direction: column;
   gap: 0.3rem;
   min-width: 0;
 }
 
-body.stamp .stamp-kits__title {
+body.facelift .facelift-kits__title {
   font-size: 1.7rem;
   font-weight: 800;
   line-height: 1.2;
 }
 
-body.stamp .stamp-kits__save {
+body.facelift .facelift-kits__save {
   font-size: 1.4rem;
   font-weight: 700;
   line-height: 1.3;
-  color: var(--stamp-green);
+  color: var(--facelift-green);
 }
 
-body.stamp .stamp-kits__sub {
+body.facelift .facelift-kits__sub {
   font-size: 1.4rem;
   line-height: 1.3;
   opacity: 0.8;
 }
 
-body.stamp .stamp-kits__prices {
+body.facelift .facelift-kits__prices {
   display: flex;
   align-items: baseline;
   gap: 0.8rem;
@@ -259,17 +260,17 @@ body.stamp .stamp-kits__prices {
   white-space: nowrap;
 }
 
-body.stamp .stamp-kits__was {
+body.facelift .facelift-kits__was {
   font-size: 1.4rem;
   opacity: 0.75;
 }
 
-body.stamp .stamp-kits__now {
+body.facelift .facelift-kits__now {
   font-size: 1.8rem;
   font-weight: 800;
 }
 
-body.stamp .stamp-kits__badge {
+body.facelift .facelift-kits__badge {
   position: absolute;
   top: -1.1rem;
   right: 1.6rem;
@@ -280,27 +281,27 @@ body.stamp .stamp-kits__badge {
   letter-spacing: 0.04em;
   line-height: 1.4;
   text-transform: uppercase;
-  background: var(--stamp-navy);
+  background: var(--facelift-berry);
   color: #fff;
 }
 
-body.stamp .stamp-kits__badge--2 {
-  background: var(--stamp-yellow);
-  color: var(--stamp-navy);
+body.facelift .facelift-kits__badge--2 {
+  background: var(--facelift-pink);
+  color: var(--facelift-berry);
 }
 
 @media screen and (max-width: 749px) {
-  body.stamp .stamp-kits__card {
+  body.facelift .facelift-kits__card {
     column-gap: 1rem;
     padding: 1.2rem;
   }
 
-  body.stamp .stamp-kits__thumb {
+  body.facelift .facelift-kits__thumb {
     width: 4.6rem;
     height: 4.6rem;
   }
 
-  body.stamp .stamp-kits__prices {
+  body.facelift .facelift-kits__prices {
     flex-direction: column-reverse;
     align-items: flex-end;
     gap: 0;
@@ -309,20 +310,20 @@ body.stamp .stamp-kits__badge--2 {
 
 /* ---------- Add to cart, payments, trust badges ---------- */
 
-body.stamp .product-form__submit {
+body.facelift .product-form__submit {
   min-height: 5.6rem;
   font-size: 1.7rem;
   font-weight: 800;
 }
 
-body.stamp .stamp-payments {
+body.facelift .facelift-payments {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.8rem;
 }
 
-body.stamp .stamp-payments__secure {
+body.facelift .facelift-payments__secure {
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
@@ -332,12 +333,12 @@ body.stamp .stamp-payments__secure {
   opacity: 0.85;
 }
 
-body.stamp .stamp-payments__secure .svg-wrapper {
+body.facelift .facelift-payments__secure .svg-wrapper {
   width: 1.5rem;
   height: 1.5rem;
 }
 
-body.stamp .stamp-payments__list {
+body.facelift .facelift-payments__list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -347,7 +348,7 @@ body.stamp .stamp-payments__list {
   list-style: none;
 }
 
-body.stamp .stamp-trust {
+body.facelift .facelift-trust {
   display: flex;
   flex-wrap: wrap;
   gap: 1.2rem 1.6rem;
@@ -355,12 +356,12 @@ body.stamp .stamp-trust {
   padding: 1.8rem 1.6rem;
   list-style: none;
   border-radius: 1.8rem;
-  background: #fcf7ea;
+  background: #fafafa;
 }
 
 /* Each badge shares the row equally, so two badges stretch across the full width.
    Icon on the left, text on the right. */
-body.stamp .stamp-trust__item {
+body.facelift .facelift-trust__item {
   display: flex;
   flex: 1 1 15rem;
   flex-direction: row;
@@ -374,7 +375,7 @@ body.stamp .stamp-trust__item {
   line-height: 1.3;
 }
 
-body.stamp .stamp-trust__item .svg-wrapper {
+body.facelift .facelift-trust__item .svg-wrapper {
   flex: none;
   width: 2.4rem;
   height: 2.4rem;
@@ -382,28 +383,28 @@ body.stamp .stamp-trust__item .svg-wrapper {
 
 /* ---------- Before / after ---------- */
 
-body.stamp .stamp-ba__grid {
+body.facelift .facelift-ba__grid {
   display: grid;
   gap: 2.4rem;
   align-items: center;
 }
 
 @media screen and (min-width: 750px) {
-  body.stamp .stamp-ba__grid {
+  body.facelift .facelift-ba__grid {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: 6rem;
   }
 
-  body.stamp .stamp-ba__grid--reverse .stamp-ba__media {
+  body.facelift .facelift-ba__grid--reverse .facelift-ba__media {
     order: 2;
   }
 }
 
-body.stamp .stamp-ba__media {
+body.facelift .facelift-ba__media {
   display: block;
 }
 
-body.stamp .stamp-ba__frame {
+body.facelift .facelift-ba__frame {
   position: relative;
   aspect-ratio: 4 / 5;
   border-radius: 2.4rem;
@@ -412,8 +413,8 @@ body.stamp .stamp-ba__frame {
   touch-action: pan-y;
 }
 
-body.stamp .stamp-ba__img,
-body.stamp .stamp-ba__img img {
+body.facelift .facelift-ba__img,
+body.facelift .facelift-ba__img img {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -421,13 +422,13 @@ body.stamp .stamp-ba__img img {
   object-fit: cover;
 }
 
-body.stamp .stamp-ba__before-clip {
+body.facelift .facelift-ba__before-clip {
   position: absolute;
   inset: 0;
-  clip-path: inset(0 calc(100% - var(--stamp-ba-pos, 50%)) 0 0);
+  clip-path: inset(0 calc(100% - var(--facelift-ba-pos, 50%)) 0 0);
 }
 
-body.stamp .stamp-ba__label {
+body.facelift .facelift-ba__label {
   position: absolute;
   top: 1.4rem;
   padding: 0.4rem 1rem;
@@ -438,30 +439,30 @@ body.stamp .stamp-ba__label {
   pointer-events: none;
 }
 
-body.stamp .stamp-ba__label--before {
+body.facelift .facelift-ba__label--before {
   left: 1.4rem;
   background: #fff;
-  color: var(--stamp-navy);
+  color: var(--facelift-berry);
 }
 
-body.stamp .stamp-ba__label--after {
+body.facelift .facelift-ba__label--after {
   right: 1.4rem;
-  background: var(--stamp-yellow);
-  color: var(--stamp-navy);
+  background: var(--facelift-pink);
+  color: var(--facelift-berry);
 }
 
-body.stamp .stamp-ba__handle {
+body.facelift .facelift-ba__handle {
   position: absolute;
   top: 0;
   bottom: 0;
-  left: var(--stamp-ba-pos, 50%);
+  left: var(--facelift-ba-pos, 50%);
   width: 0.3rem;
   margin-left: -0.15rem;
   background: #fff;
   pointer-events: none;
 }
 
-body.stamp .stamp-ba__knob {
+body.facelift .facelift-ba__knob {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -473,11 +474,11 @@ body.stamp .stamp-ba__knob {
   transform: translate(-50%, -50%);
   border-radius: 50%;
   background: #fff;
-  color: var(--stamp-navy);
+  color: var(--facelift-berry);
   box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.25);
 }
 
-body.stamp .stamp-ba__range {
+body.facelift .facelift-ba__range {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -487,96 +488,96 @@ body.stamp .stamp-ba__range {
   cursor: ew-resize;
 }
 
-body.stamp .stamp-ba__frame:focus-within {
-  outline: 0.3rem solid var(--stamp-navy);
+body.facelift .facelift-ba__frame:focus-within {
+  outline: 0.3rem solid var(--facelift-berry);
   outline-offset: 0.3rem;
 }
 
-body.stamp .stamp-ba__content {
+body.facelift .facelift-ba__content {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 1.6rem;
 }
 
-body.stamp .stamp-ba__heading {
+body.facelift .facelift-ba__heading {
   margin: 0;
 }
 
-body.stamp .stamp-ba__review {
+body.facelift .facelift-ba__review {
   width: 100%;
   margin: 0;
   padding: 1.8rem 2rem;
   border-radius: 1.4rem;
-  background: #fff4bf;
-  border: 0.1rem solid rgba(22, 43, 114, 0.08);
+  background: #ececec;
+  border: 0.1rem solid rgba(17, 17, 17, 0.08);
 }
 
-body.stamp .stamp-ba__quote {
+body.facelift .facelift-ba__quote {
   margin: 0.8rem 0 0;
   font-size: 1.5rem;
   font-style: italic;
   line-height: 1.5;
 }
 
-body.stamp .stamp-ba__author {
+body.facelift .facelift-ba__author {
   margin-top: 0.8rem;
   font-size: 1.4rem;
   font-weight: 700;
 }
 
-body.stamp .stamp-ba__link {
+body.facelift .facelift-ba__link {
   font-size: 1.4rem;
   font-weight: 700;
 }
 
-/* ---------- Narrower content blocks for the image grids (section keys in product.eyebrow-stamp.json) ---------- */
+/* ---------- Narrower content blocks for the image grids (section keys in product.facelift-device.json) ---------- */
 
-body.stamp #shopify-section-made-to-look .page-width,
-body.stamp #shopify-section-good-to-know .page-width {
+body.facelift #shopify-section-made-to-look .page-width,
+body.facelift #shopify-section-good-to-know .page-width {
   max-width: 92rem;
 }
 
-body.stamp #shopify-section-how-to-use .page-width {
+body.facelift #shopify-section-how-to-use .page-width {
   max-width: 98rem;
 }
 
-body.stamp .nookly-mc .multicolumn-card__info {
+body.facelift .nookly-mc .multicolumn-card__info {
   text-align: left;
 }
 
-body.stamp .nookly-mc--cards .multicolumn-card__info {
+body.facelift .nookly-mc--cards .multicolumn-card__info {
   text-align: left;
 }
 
-body.stamp .nookly-mc--cards .multicolumn-card__info h3 {
+body.facelift .nookly-mc--cards .multicolumn-card__info h3 {
   margin-top: 0;
 }
 
-body.stamp .nookly-mc .multicolumn__title {
+body.facelift .nookly-mc .multicolumn__title {
   text-align: center;
   justify-content: center;
 }
 
-body.stamp .nookly-mc .multicolumn-card__image-wrapper .media {
+body.facelift .nookly-mc .multicolumn-card__image-wrapper .media {
   border-radius: 1.6rem;
 }
 
 /* ---------- Accordion columns ---------- */
 
-body.stamp .stamp-acc__grid {
+body.facelift .facelift-acc__grid {
   display: grid;
   gap: 3.2rem;
 }
 
 @media screen and (min-width: 750px) {
-  body.stamp .stamp-acc__grid {
+  body.facelift .facelift-acc__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 6rem;
   }
 }
 
-body.stamp .stamp-acc__eyebrow {
+body.facelift .facelift-acc__eyebrow {
   margin: 0 0 1.2rem;
   display: flex;
   align-items: center;
@@ -588,20 +589,20 @@ body.stamp .stamp-acc__eyebrow {
   text-transform: uppercase;
 }
 
-body.stamp .stamp-acc__eyebrow::before {
+body.facelift .facelift-acc__eyebrow::before {
   content: '';
   width: 0.7rem;
   height: 0.7rem;
   border-radius: 50%;
-  background: var(--stamp-yellow);
+  background: var(--facelift-pink);
 }
 
-body.stamp .stamp-acc__row {
+body.facelift .facelift-acc__row {
   border: 0;
-  border-bottom: 0.1rem solid var(--stamp-line);
+  border-bottom: 0.1rem solid var(--facelift-line);
 }
 
-body.stamp .stamp-acc__row summary {
+body.facelift .facelift-acc__row summary {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -611,26 +612,26 @@ body.stamp .stamp-acc__row summary {
   cursor: pointer;
 }
 
-body.stamp .stamp-acc__row summary::-webkit-details-marker {
+body.facelift .facelift-acc__row summary::-webkit-details-marker {
   display: none;
 }
 
-body.stamp .stamp-acc__title {
+body.facelift .facelift-acc__title {
   margin: 0;
   font-size: 1.5rem;
   font-weight: 700;
   letter-spacing: 0;
 }
 
-body.stamp .stamp-acc__icon {
+body.facelift .facelift-acc__icon {
   position: relative;
   flex: none;
   width: 1.4rem;
   height: 1.4rem;
 }
 
-body.stamp .stamp-acc__icon::before,
-body.stamp .stamp-acc__icon::after {
+body.facelift .facelift-acc__icon::before,
+body.facelift .facelift-acc__icon::after {
   content: '';
   position: absolute;
   top: 50%;
@@ -641,26 +642,26 @@ body.stamp .stamp-acc__icon::after {
   background: currentColor;
 }
 
-body.stamp .stamp-acc__icon::after {
+body.facelift .facelift-acc__icon::after {
   transform: rotate(90deg);
 }
 
-body.stamp .stamp-acc__row details[open] .stamp-acc__icon::after {
+body.facelift .facelift-acc__row details[open] .facelift-acc__icon::after {
   transform: none;
 }
 
-body.stamp .stamp-acc__row .accordion__content {
+body.facelift .facelift-acc__row .accordion__content {
   padding: 0 0 1.8rem;
 }
 
 /* ---------- Reviews ---------- */
 
-body.stamp .stamp-reviews__heading {
+body.facelift .facelift-reviews__heading {
   margin: 0 0 3.2rem;
   text-align: center;
 }
 
-body.stamp .stamp-reviews__summary {
+body.facelift .facelift-reviews__summary {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -669,24 +670,24 @@ body.stamp .stamp-reviews__summary {
   margin-bottom: 3.2rem;
 }
 
-body.stamp .stamp-reviews__score {
+body.facelift .facelift-reviews__score {
   display: flex;
   align-items: center;
   gap: 1.6rem;
 }
 
-body.stamp .stamp-reviews__avg {
+body.facelift .facelift-reviews__avg {
   font-size: 4.8rem;
   font-weight: 800;
   line-height: 1;
 }
 
-body.stamp .stamp-reviews__count {
+body.facelift .facelift-reviews__count {
   margin: 0.4rem 0 0;
   font-size: 1.4rem;
 }
 
-body.stamp .stamp-reviews__list {
+body.facelift .facelift-reviews__list {
   display: grid;
   gap: 1.6rem;
   margin: 0;
@@ -695,30 +696,30 @@ body.stamp .stamp-reviews__list {
 }
 
 @media screen and (min-width: 750px) {
-  body.stamp .stamp-reviews__list {
+  body.facelift .facelift-reviews__list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 2rem;
   }
 }
 
-body.stamp .stamp-review {
+body.facelift .facelift-review {
   display: flex;
   flex-direction: column;
   gap: 1rem;
   padding: 2rem 2.4rem;
   border-radius: 1.6rem;
   background: #fff;
-  box-shadow: 0 0.1rem 0.8rem rgba(22, 43, 114, 0.08);
+  box-shadow: 0 0.1rem 0.8rem rgba(17, 17, 17, 0.08);
 }
 
-body.stamp .stamp-review__top {
+body.facelift .facelift-review__top {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
 }
 
-body.stamp .stamp-review__verified {
+body.facelift .facelift-review__verified {
   padding: 0.2rem 0.8rem;
   border-radius: 10rem;
   font-size: 1.2rem;
@@ -726,48 +727,48 @@ body.stamp .stamp-review__verified {
   background: #eef1fb;
 }
 
-body.stamp .stamp-review__title {
+body.facelift .facelift-review__title {
   margin: 0;
   font-size: 1.7rem;
 }
 
-body.stamp .stamp-review__body {
+body.facelift .facelift-review__body {
   font-size: 1.5rem;
 }
 
-body.stamp .stamp-review__footer {
+body.facelift .facelift-review__footer {
   display: flex;
   align-items: center;
   gap: 1.2rem;
   margin-top: auto;
 }
 
-body.stamp .stamp-review__photo {
+body.facelift .facelift-review__photo {
   width: 7.2rem;
   height: 7.2rem;
   border-radius: 1rem;
   overflow: hidden;
 }
 
-body.stamp .stamp-review__photo img {
+body.facelift .facelift-review__photo img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-body.stamp .stamp-review__author {
+body.facelift .facelift-review__author {
   margin: 0;
   font-size: 1.4rem;
   font-weight: 700;
 }
 
-body.stamp .stamp-reviews__app {
+body.facelift .facelift-reviews__app {
   margin-bottom: 2.4rem;
 }
 
-body.stamp .stamp-reviews__empty {
+body.facelift .facelift-reviews__empty {
   padding: 2rem;
-  border: 0.1rem dashed var(--stamp-line);
+  border: 0.1rem dashed var(--facelift-line);
   border-radius: 1.2rem;
   text-align: center;
   font-size: 1.4rem;
@@ -775,13 +776,13 @@ body.stamp .stamp-reviews__empty {
 
 /* ---------- Colour swatches read from the custom.color metafield ---------- */
 
-body.stamp .stamp-colors__list {
+body.facelift .facelift-colors__list {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
 }
 
-body.stamp .stamp-colors__list input[type='radio'] {
+body.facelift .facelift-colors__list input[type='radio'] {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -790,51 +791,51 @@ body.stamp .stamp-colors__list input[type='radio'] {
   pointer-events: none;
 }
 
-body.stamp .stamp-colors__swatch {
+body.facelift .facelift-colors__swatch {
   display: block;
   width: 3.6rem;
   height: 3.6rem;
   border-radius: 50%;
-  background: var(--stamp-swatch, #ccc);
+  background: var(--facelift-swatch, #ccc);
   box-shadow: inset 0 0 0 0.1rem rgba(0, 0, 0, 0.15);
   cursor: pointer;
 }
 
-body.stamp .stamp-colors__swatch--square {
+body.facelift .facelift-colors__swatch--square {
   border-radius: 0.8rem;
 }
 
-body.stamp .stamp-colors__list input[type='radio']:checked + .stamp-colors__swatch {
-  outline: 0.2rem solid var(--stamp-navy);
+body.facelift .facelift-colors__list input[type='radio']:checked + .facelift-colors__swatch {
+  outline: 0.2rem solid var(--facelift-berry);
   outline-offset: 0.3rem;
 }
 
-body.stamp .stamp-colors__list input[type='radio']:focus-visible + .stamp-colors__swatch {
-  outline: 0.3rem solid var(--stamp-navy);
+body.facelift .facelift-colors__list input[type='radio']:focus-visible + .facelift-colors__swatch {
+  outline: 0.3rem solid var(--facelift-berry);
   outline-offset: 0.3rem;
 }
 
-body.stamp .stamp-colors__list input[type='radio'].disabled + .stamp-colors__swatch {
+body.facelift .facelift-colors__list input[type='radio'].disabled + .facelift-colors__swatch {
   opacity: 0.4;
 }
 
 /* ---------- Product gallery: square corners, no top gap on mobile ---------- */
 
-body.stamp .product__media-wrapper {
+body.facelift .product__media-wrapper {
   --media-radius: 0rem;
 }
 
-body.stamp .product__media-wrapper :is(.global-media-settings, .global-media-settings img, .product-media-container, .product__media, .media, .thumbnail, .thumbnail img, .product__media-toggle, .deferred-media__poster, video, model-viewer),
-body.stamp .product__media-wrapper .global-media-settings::after {
+body.facelift .product__media-wrapper :is(.global-media-settings, .global-media-settings img, .product-media-container, .product__media, .media, .thumbnail, .thumbnail img, .product__media-toggle, .deferred-media__poster, video, model-viewer),
+body.facelift .product__media-wrapper .global-media-settings::after {
   border-radius: 0;
 }
 
 @media screen and (max-width: 749px) {
-  body.stamp product-info[class*='section-'] {
+  body.facelift product-info[class*='section-'] {
     padding-top: 0;
   }
 
-  body.stamp .product__media-wrapper {
+  body.facelift .product__media-wrapper {
     padding-top: 0;
     margin-top: 0;
   }
@@ -843,39 +844,39 @@ body.stamp .product__media-wrapper .global-media-settings::after {
 /* ---------- Mobile: full-width, edge-to-edge product image ---------- */
 
 @media screen and (max-width: 749px) {
-  body.stamp product-info .page-width {
+  body.facelift product-info .page-width {
     padding-left: 0;
     padding-right: 0;
   }
 
-  body.stamp product-info .product.grid {
+  body.facelift product-info .product.grid {
     margin: 0;
     width: 100%;
     row-gap: 0;
   }
 
-  body.stamp .product__media-wrapper,
-  body.stamp .product__info-wrapper {
+  body.facelift .product__media-wrapper,
+  body.facelift .product__info-wrapper {
     width: 100%;
     max-width: 100%;
   }
 
-  body.stamp .product__media-wrapper {
+  body.facelift .product__media-wrapper {
     padding: 0;
     margin: 0;
   }
 
-  body.stamp .product__info-wrapper {
+  body.facelift .product__info-wrapper {
     padding: 2rem 1.5rem 0;
   }
 
-  body.stamp .product__media-wrapper slider-component,
-  body.stamp .product__media-wrapper slider-component:not(.thumbnail-slider--no-slide) {
+  body.facelift .product__media-wrapper slider-component,
+  body.facelift .product__media-wrapper slider-component:not(.thumbnail-slider--no-slide) {
     margin-left: 0;
     margin-right: 0;
   }
 
-  body.stamp .product__media-wrapper .product__media-list {
+  body.facelift .product__media-wrapper .product__media-list {
     margin: 0;
     width: 100%;
   }
@@ -883,7 +884,7 @@ body.stamp .product__media-wrapper .global-media-settings::after {
 
 /* Mobile gallery slider: one slide = full width, no peeking neighbour, no gaps */
 @media screen and (max-width: 749px) {
-  body.stamp .product__media-wrapper .product__media-list {
+  body.facelift .product__media-wrapper .product__media-list {
     gap: 0;
     column-gap: 0;
     row-gap: 0;
@@ -891,7 +892,7 @@ body.stamp .product__media-wrapper .global-media-settings::after {
     scroll-padding: 0;
   }
 
-  body.stamp .product__media-wrapper .product__media-list .product__media-item {
+  body.facelift .product__media-wrapper .product__media-list .product__media-item {
     flex: 0 0 100%;
     width: 100%;
     max-width: 100%;
@@ -899,14 +900,14 @@ body.stamp .product__media-wrapper .global-media-settings::after {
     padding: 0;
   }
 
-  body.stamp .product__media-wrapper .product__media-list .product-media-container {
+  body.facelift .product__media-wrapper .product__media-list .product-media-container {
     width: 100%;
   }
 }
 
 /* "Made to look like your brows": on mobile show a small square image on the left and larger text on the right */
 @media screen and (max-width: 749px) {
-  body.stamp #shopify-section-made-to-look .multicolumn-card {
+  body.facelift #shopify-section-made-to-look .multicolumn-card {
     display: grid;
     grid-template-columns: 24% minmax(0, 1fr);
     column-gap: 2rem;
@@ -914,34 +915,58 @@ body.stamp .product__media-wrapper .global-media-settings::after {
     padding: 0;
   }
 
-  body.stamp #shopify-section-made-to-look .multicolumn-card__image-wrapper,
-  body.stamp #shopify-section-made-to-look .multicolumn-card__image-wrapper.multicolumn-card-spacing {
+  body.facelift #shopify-section-made-to-look .multicolumn-card__image-wrapper,
+  body.facelift #shopify-section-made-to-look .multicolumn-card__image-wrapper.multicolumn-card-spacing {
     margin: 0;
     padding: 0;
     width: 100%;
     max-width: none;
   }
 
-  body.stamp #shopify-section-made-to-look .multicolumn-card__image-wrapper .media {
+  body.facelift #shopify-section-made-to-look .multicolumn-card__image-wrapper .media {
     padding-bottom: 100%;
     border-radius: 1.6rem;
     overflow: hidden;
   }
 
-  body.stamp #shopify-section-made-to-look .multicolumn-card__info {
+  body.facelift #shopify-section-made-to-look .multicolumn-card__info {
     padding: 0;
     margin: 0;
     text-align: left;
   }
 
-  body.stamp #shopify-section-made-to-look .multicolumn-card__info .rte,
-  body.stamp #shopify-section-made-to-look .multicolumn-card__info p {
+  body.facelift #shopify-section-made-to-look .multicolumn-card__info .rte,
+  body.facelift #shopify-section-made-to-look .multicolumn-card__info p {
     margin: 0;
     font-size: 1.8rem;
     line-height: 1.4;
   }
 
-  body.stamp #shopify-section-made-to-look .multicolumn-list {
+  body.facelift #shopify-section-made-to-look .multicolumn-list {
     row-gap: 2.8rem;
   }
+}
+
+/* ---------- Add to cart: fully rounded, no hover effect ---------- */
+
+body.facelift {
+  --facelift-atc-radius: 50rem;
+}
+
+body.facelift .product-form__submit.button.button,
+body.facelift .product-form__submit.button.button::before,
+body.facelift .product-form__submit.button.button::after {
+  border-radius: var(--facelift-atc-radius);
+}
+
+body.facelift .product-form__submit.button.button,
+body.facelift .product-form__submit.button.button:not([disabled]):hover,
+body.facelift .product-form__submit.button.button:not([disabled]):active {
+  transform: none;
+  transition: none;
+}
+
+body.facelift .product-form__submit.button.button:not([disabled]):hover::after {
+  --border-offset: 0px;
+  transition: none;
 }

@@ -1,16 +1,6 @@
 <!doctype html>
 <html class="js" lang="{{ request.locale.iso_code }}">
   <head>
-    {%- comment -%}
-      Nookly: the home page is not used. Send visitors to the product page instead.
-      Skipped inside the theme editor so the home page can still be edited.
-    {%- endcomment -%}
-    {%- if template.name == 'index' and request.design_mode == false -%}
-      <meta http-equiv="refresh" content="0; url={{ routes.root_url }}products/waterproof-eyebrow-stamp">
-      <script>
-        window.location.replace('{{ routes.root_url }}products/waterproof-eyebrow-stamp' + window.location.search);
-      </script>
-    {%- endif -%}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">

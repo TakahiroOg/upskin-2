@@ -1,5 +1,5 @@
 {%- doc -%}
-  Variant picker for the eyebrow stamp product page. Each product option gets its own style:
+  Variant picker for the facelift device product page. Each product option gets its own style:
     - the option named in "Swatch option name" (default "Color") renders as colour swatches (buttons if no swatch is set),
     - the option named in "Kit option name" (default "Kits") renders as big radio cards with price, savings and badges,
     - every other option (e.g. "Shape") renders as pill buttons.
@@ -49,8 +49,8 @@
           assign legend_text = block.settings.kit_legend | default: option.name
         -%}
         <fieldset class="js product-form__input product-form__input--kits">
-          <legend class="form__label stamp-kits__legend">{{ legend_text | escape }}</legend>
-          <div class="stamp-kits__list">
+          <legend class="form__label facelift-kits__legend">{{ legend_text | escape }}</legend>
+          <div class="facelift-kits__list">
             {%- for value in option.values -%}
               {%- liquid
                 assign card_position = forloop.index
@@ -92,7 +92,7 @@
                 assign input_name = option.name | append: '-' | append: option.position
                 assign escaped_value = value | escape
               -%}
-              <div class="stamp-kits__item">
+              <div class="facelift-kits__item">
                 <input
                   type="radio"
                   id="{{ input_id }}"
@@ -109,12 +109,12 @@
                   data-option-value-id="{{ value.id }}"
                   data-option-name="{{ option.name | escape }}"
                 >
-                <label for="{{ input_id }}" class="stamp-kits__card">
+                <label for="{{ input_id }}" class="facelift-kits__card">
                   {%- if card_badge != blank -%}
-                    <span class="stamp-kits__badge stamp-kits__badge--{{ card_position }}">{{ card_badge | escape }}</span>
+                    <span class="facelift-kits__badge facelift-kits__badge--{{ card_position }}">{{ card_badge | escape }}</span>
                   {%- endif -%}
-                  <span class="stamp-kits__radio" aria-hidden="true"></span>
-                  <span class="stamp-kits__thumb" aria-hidden="true">
+                  <span class="facelift-kits__radio" aria-hidden="true"></span>
+                  <span class="facelift-kits__thumb" aria-hidden="true">
                     {%- if card_image != blank -%}
                       {{
                         card_image
@@ -125,25 +125,25 @@
                       {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
                     {%- endif -%}
                   </span>
-                  <span class="stamp-kits__body">
-                    <span class="stamp-kits__title">{{ value }}</span>
+                  <span class="facelift-kits__body">
+                    <span class="facelift-kits__title">{{ value }}</span>
                     {%- if savings > 0 -%}
-                      <span class="stamp-kits__save">
+                      <span class="facelift-kits__save">
                         {{- block.settings.save_text | default: 'You save' }} {{ savings | money -}}
                         {%- if card_deal != blank %} &middot; {{ card_deal | escape }}{% endif -%}
                       </span>
                     {%- elsif card_deal != blank -%}
-                      <span class="stamp-kits__save">{{ card_deal | escape }}</span>
+                      <span class="facelift-kits__save">{{ card_deal | escape }}</span>
                     {%- endif -%}
                     {%- if card_subtitle != blank -%}
-                      <span class="stamp-kits__sub">{{ card_subtitle | escape }}</span>
+                      <span class="facelift-kits__sub">{{ card_subtitle | escape }}</span>
                     {%- endif -%}
                   </span>
-                  <span class="stamp-kits__prices">
+                  <span class="facelift-kits__prices">
                     {%- if match.compare_at_price > match.price -%}
-                      <s class="stamp-kits__was">{{ match.compare_at_price | money }}</s>
+                      <s class="facelift-kits__was">{{ match.compare_at_price | money }}</s>
                     {%- endif -%}
-                    <span class="stamp-kits__now">{{ match.price | money }}</span>
+                    <span class="facelift-kits__now">{{ match.price | money }}</span>
                   </span>
                   <span class="visually-hidden label-unavailable">
                     {{- 'products.product.variant_sold_out_or_unavailable' | t -}}
@@ -158,14 +158,14 @@
           Fallback when Shopify gives no swatch data: read the hex colour from the product's custom.color
           metafield (a list of "color" metaobjects with label + color fields) and match it by value name.
         {%- endcomment -%}
-        <fieldset class="js product-form__input product-form__input--swatch stamp-colors">
+        <fieldset class="js product-form__input product-form__input--swatch facelift-colors">
           <legend class="form__label">
             {{ option.name | escape }}:
             <span data-selected-value>
               {{- option.selected_value | escape -}}
             </span>
           </legend>
-          <div class="stamp-colors__list">
+          <div class="facelift-colors__list">
             {%- for value in option.values -%}
               {%- liquid
                 assign hex = null
@@ -198,9 +198,9 @@
               >
               <label
                 for="{{ input_id }}"
-                class="stamp-colors__swatch stamp-colors__swatch--{{ block.settings.swatch_shape }}"
+                class="facelift-colors__swatch facelift-colors__swatch--{{ block.settings.swatch_shape }}"
                 {% if hex != blank %}
-                  style="--stamp-swatch: {{ hex }};"
+                  style="--facelift-swatch: {{ hex }};"
                 {% endif %}
                 title="{{ escaped_value }}"
               >

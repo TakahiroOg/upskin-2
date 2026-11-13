@@ -1,9 +1,9 @@
 {% comment %}
-  Nookly: copy of sections/nookly-main-product.liquid for templates/product.eyebrow-stamp.json.
+  Nookly: copy of sections/nookly-main-product.liquid for templates/product.facelift-device.json.
   Changes:
-    - the variant picker block renders snippets/stamp-variant-picker.liquid (colour swatches, shape pills,
+    - the variant picker block renders snippets/facelift-variant-picker.liquid (colour swatches, shape pills,
       kit cards with price / savings / badges, all picked by option name),
-    - the buy buttons block renders snippets/stamp-buy-buttons.liquid (button text shows the kit size and price),
+    - the buy buttons block renders snippets/facelift-buy-buttons.liquid (button text shows the kit size and price),
     - new blocks: Heading (with italic accent), Checklist, Payment icons, Trust badges.
 {% endcomment %}
 <product-info
@@ -487,20 +487,20 @@
                     surface: 'product_page'
                   -%}
                 {%- when 'variant_picker' -%}
-                  {% render 'stamp-variant-picker',
+                  {% render 'facelift-variant-picker',
                     product: product,
                     block: block,
                     product_form_id: product_form_id
                   %}
                 {%- when 'buy_buttons' -%}
-                  {%- assign stamp_picker = section.blocks | where: 'type', 'variant_picker' | first -%}
-                  {%- render 'stamp-buy-buttons',
+                  {%- assign facelift_picker = section.blocks | where: 'type', 'variant_picker' | first -%}
+                  {%- render 'facelift-buy-buttons',
                     block: block,
                     product: product,
                     product_form_id: product_form_id,
                     section_id: section.id,
                     show_pickup_availability: true,
-                    kit_option_name: stamp_picker.settings.kit_option_name,
+                    kit_option_name: facelift_picker.settings.kit_option_name,
                     button_template: block.settings.button_template
                   -%}
                 {%- when 'rating' -%}
@@ -693,23 +693,23 @@
                 {%- when 'icon-with-text' -%}
                   {% render 'icon-with-text', block: block %}
                 {%- when 'heading' -%}
-                  <h2 class="stamp-product-heading inline-richtext {{ block.settings.heading_size }}" {{ block.shopify_attributes }}>
+                  <h2 class="facelift-product-heading inline-richtext {{ block.settings.heading_size }}" {{ block.shopify_attributes }}>
                     {{- block.settings.heading -}}
                   </h2>
                 {%- when 'checklist' -%}
-                  <div class="stamp-checklist rte" {{ block.shopify_attributes }}>
+                  <div class="facelift-checklist rte" {{ block.shopify_attributes }}>
                     {{- block.settings.list -}}
                   </div>
                 {%- when 'payments' -%}
-                  <div class="stamp-payments" {{ block.shopify_attributes }}>
+                  <div class="facelift-payments" {{ block.shopify_attributes }}>
                     {%- if block.settings.secure_text != blank -%}
-                      <p class="stamp-payments__secure">
+                      <p class="facelift-payments__secure">
                         <span class="svg-wrapper">{{- 'icon-lock.svg' | inline_asset_content -}}</span>
                         {{ block.settings.secure_text | escape }}
                       </p>
                     {%- endif -%}
                     {%- if shop.enabled_payment_types.size > 0 -%}
-                      <ul class="list list-payment stamp-payments__list" role="list">
+                      <ul class="list list-payment facelift-payments__list" role="list">
                         {%- for type in shop.enabled_payment_types -%}
                           <li class="list-payment__item">
                             {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
@@ -719,7 +719,7 @@
                     {%- endif -%}
                   </div>
                 {%- when 'trust' -%}
-                  <ul class="stamp-trust" role="list" {{ block.shopify_attributes }}>
+                  <ul class="facelift-trust" role="list" {{ block.shopify_attributes }}>
                     {%- for n in (1..3) -%}
                       {%- liquid
                         assign icon_key = 'icon_' | append: n
@@ -728,7 +728,7 @@
                         assign trust_text = block.settings[text_key]
                       -%}
                       {%- if trust_text != blank -%}
-                        <li class="stamp-trust__item">
+                        <li class="facelift-trust__item">
                           {%- if icon_name != 'none' -%}
                             <span class="svg-wrapper">{{- 'icon-' | append: icon_name | append: '.svg' | inline_asset_content -}}</span>
                           {%- endif -%}
@@ -817,7 +817,7 @@
 
 {% schema %}
 {
-  "name": "Stamp product",
+  "name": "Facelift product",
   "tag": "section",
   "class": "section",
   "blocks": [
@@ -924,7 +924,7 @@
     },
     {
       "type": "variant_picker",
-      "name": "Variant picker (stamp)",
+      "name": "Variant picker (facelift)",
       "limit": 1,
       "settings": [
         {
@@ -2032,8 +2032,8 @@
           "type": "inline_richtext",
           "id": "heading",
           "label": "Heading",
-          "info": "Wrap words in italics for the serif accent, e.g. Even, full brows <em>in one stamp.</em>",
-          "default": "Even, full brows <em>in one stamp.</em>"
+          "info": "Wrap words in italics for the serif accent, e.g. Even, full brows <em>in one session.</em>",
+          "default": "Even, full brows <em>in one session.</em>"
         },
         {
           "type": "select",

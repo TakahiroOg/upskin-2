@@ -1,7 +1,7 @@
 {% comment %}
-  Nookly: accordions in side-by-side columns (new, for templates/product.eyebrow-stamp.json).
+  Nookly: accordions in side-by-side columns (new, for templates/product.facelift-device.json).
   Add a "Column heading" block to start a column, then "Row" blocks (question + answer) to fill it.
-  Uses the theme's accordion styles (component-accordion.css) plus assets/stamp.css.
+  Uses the theme's accordion styles (component-accordion.css) plus assets/facelift.css.
 {% endcomment %}
 
 {{ 'component-accordion.css' | asset_url | stylesheet_tag }}
@@ -20,9 +20,9 @@
   }
 {%- endstyle -%}
 
-<div class="stamp-acc section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}">
+<div class="facelift-acc section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}">
   <div class="page-width">
-    <div class="stamp-acc__grid">
+    <div class="facelift-acc__grid">
       {%- assign column_open = false -%}
       {%- for block in section.blocks -%}
         {%- if block.type == 'group' -%}
@@ -30,24 +30,24 @@
             {{ '</div>' }}
           {%- endif -%}
           {%- assign column_open = true -%}
-          {{ '<div class="stamp-acc__col" ' }}{{ block.shopify_attributes }}{{ '>' }}
+          {{ '<div class="facelift-acc__col" ' }}{{ block.shopify_attributes }}{{ '>' }}
           {%- if block.settings.heading != blank -%}
-            <p class="stamp-acc__eyebrow">{{ block.settings.heading | escape }}</p>
+            <p class="facelift-acc__eyebrow">{{ block.settings.heading | escape }}</p>
           {%- endif -%}
         {%- else -%}
           {%- unless column_open -%}
             {%- assign column_open = true -%}
-            {{ '<div class="stamp-acc__col">' }}
+            {{ '<div class="facelift-acc__col">' }}
           {%- endunless -%}
-          <div class="stamp-acc__row accordion" {{ block.shopify_attributes }}>
+          <div class="facelift-acc__row accordion" {{ block.shopify_attributes }}>
             <details id="Details-{{ block.id }}-{{ section.id }}"{% if block.settings.open %} open{% endif %}>
               <summary>
-                <h3 class="stamp-acc__title accordion__title inline-richtext">
+                <h3 class="facelift-acc__title accordion__title inline-richtext">
                   {{- block.settings.heading | default: block.settings.page.title | escape -}}
                 </h3>
-                <span class="stamp-acc__icon" aria-hidden="true"></span>
+                <span class="facelift-acc__icon" aria-hidden="true"></span>
               </summary>
-              <div class="accordion__content rte" id="StampAccordion-{{ block.id }}-{{ section.id }}">
+              <div class="accordion__content rte" id="FaceliftAccordion-{{ block.id }}-{{ section.id }}">
                 {{ block.settings.content }}
                 {{ block.settings.page.content }}
               </div>
@@ -64,7 +64,7 @@
 
 {% schema %}
 {
-  "name": "Stamp accordion columns",
+  "name": "Facelift accordion",
   "tag": "section",
   "class": "section",
   "blocks": [
@@ -116,7 +116,7 @@
       "type": "color_scheme",
       "id": "color_scheme",
       "label": "Color scheme",
-      "default": "scheme-stamp-white"
+      "default": "scheme-facelift-white"
     },
     {
       "type": "range",
@@ -141,7 +141,7 @@
   ],
   "presets": [
     {
-      "name": "Stamp accordion columns",
+      "name": "Facelift accordion",
       "blocks": [
         { "type": "group" },
         { "type": "row" },

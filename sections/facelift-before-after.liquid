@@ -1,8 +1,8 @@
 {% comment %}
-  Nookly: before / after comparison section (new, for templates/product.eyebrow-stamp.json).
+  Nookly: before / after comparison section (new, for templates/product.facelift-device.json).
   Left: a draggable before/after image slider. Right: a heading, short review cards and an optional link.
   Review cards are only shown when you fill them in, so no placeholder reviews ever go live.
-  Styles live in assets/stamp.css.
+  Styles live in assets/facelift.css.
 {% endcomment %}
 
 {%- style -%}
@@ -19,11 +19,11 @@
   }
 {%- endstyle -%}
 
-<div class="stamp-ba section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}">
+<div class="facelift-ba section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}">
   <div class="page-width">
-    <div class="stamp-ba__grid{% if section.settings.layout == 'text_first' %} stamp-ba__grid--reverse{% endif %}">
-      <before-after-slider class="stamp-ba__media" style="--stamp-ba-pos: {{ section.settings.start_position }}%;">
-        <div class="stamp-ba__frame">
+    <div class="facelift-ba__grid{% if section.settings.layout == 'text_first' %} facelift-ba__grid--reverse{% endif %}">
+      <before-after-slider class="facelift-ba__media" style="--facelift-ba-pos: {{ section.settings.start_position }}%;">
+        <div class="facelift-ba__frame">
           {%- if section.settings.after_image != blank -%}
             {{
               section.settings.after_image
@@ -32,15 +32,15 @@
                 widths: '360, 535, 750, 1070, 1400',
                 sizes: '(min-width: 1200px) 560px, (min-width: 750px) 45vw, 100vw',
                 loading: 'lazy',
-                class: 'stamp-ba__img stamp-ba__img--after',
+                class: 'facelift-ba__img facelift-ba__img--after',
                 alt: section.settings.after_alt
             }}
           {%- else -%}
-            <div class="stamp-ba__img stamp-ba__img--after stamp-ba__placeholder placeholder">
+            <div class="facelift-ba__img facelift-ba__img--after facelift-ba__placeholder placeholder">
               {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
             </div>
           {%- endif -%}
-          <div class="stamp-ba__before-clip">
+          <div class="facelift-ba__before-clip">
             {%- if section.settings.before_image != blank -%}
               {{
                 section.settings.before_image
@@ -49,28 +49,28 @@
                   widths: '360, 535, 750, 1070, 1400',
                   sizes: '(min-width: 1200px) 560px, (min-width: 750px) 45vw, 100vw',
                   loading: 'lazy',
-                  class: 'stamp-ba__img stamp-ba__img--before',
+                  class: 'facelift-ba__img facelift-ba__img--before',
                   alt: section.settings.before_alt
               }}
             {%- else -%}
-              <div class="stamp-ba__img stamp-ba__img--before stamp-ba__placeholder placeholder">
+              <div class="facelift-ba__img facelift-ba__img--before facelift-ba__placeholder placeholder">
                 {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
               </div>
             {%- endif -%}
           </div>
           {%- if section.settings.before_label != blank -%}
-            <span class="stamp-ba__label stamp-ba__label--before">{{ section.settings.before_label | escape }}</span>
+            <span class="facelift-ba__label facelift-ba__label--before">{{ section.settings.before_label | escape }}</span>
           {%- endif -%}
           {%- if section.settings.after_label != blank -%}
-            <span class="stamp-ba__label stamp-ba__label--after">{{ section.settings.after_label | escape }}</span>
+            <span class="facelift-ba__label facelift-ba__label--after">{{ section.settings.after_label | escape }}</span>
           {%- endif -%}
-          <span class="stamp-ba__handle" aria-hidden="true">
-            <span class="stamp-ba__knob">
+          <span class="facelift-ba__handle" aria-hidden="true">
+            <span class="facelift-ba__knob">
               <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6"/></svg>
             </span>
           </span>
           <input
-            class="stamp-ba__range"
+            class="facelift-ba__range"
             type="range"
             min="0"
             max="100"
@@ -81,29 +81,29 @@
         </div>
       </before-after-slider>
 
-      <div class="stamp-ba__content">
+      <div class="facelift-ba__content">
         {%- for block in section.blocks -%}
           {%- case block.type -%}
             {%- when 'heading' -%}
-              <h2 class="stamp-ba__heading inline-richtext {{ block.settings.heading_size }}" {{ block.shopify_attributes }}>
+              <h2 class="facelift-ba__heading inline-richtext {{ block.settings.heading_size }}" {{ block.shopify_attributes }}>
                 {{ block.settings.heading }}
               </h2>
             {%- when 'text' -%}
-              <div class="stamp-ba__text rte" {{ block.shopify_attributes }}>
+              <div class="facelift-ba__text rte" {{ block.shopify_attributes }}>
                 {{ block.settings.text }}
               </div>
             {%- when 'review' -%}
               {%- if block.settings.quote != blank -%}
-                <figure class="stamp-ba__review" {{ block.shopify_attributes }}>
+                <figure class="facelift-ba__review" {{ block.shopify_attributes }}>
                   <div
-                    class="stamp-stars"
+                    class="facelift-stars"
                     role="img"
                     aria-label="{{ 'accessibility.star_reviews_info' | t: rating_value: block.settings.rating, rating_max: 5 }}"
-                    style="--stamp-rating: {{ block.settings.rating }};"
+                    style="--facelift-rating: {{ block.settings.rating }};"
                   ></div>
-                  <blockquote class="stamp-ba__quote">&ldquo;{{ block.settings.quote | escape }}&rdquo;</blockquote>
+                  <blockquote class="facelift-ba__quote">&ldquo;{{ block.settings.quote | escape }}&rdquo;</blockquote>
                   {%- if block.settings.author != blank -%}
-                    <figcaption class="stamp-ba__author">{{ block.settings.author | escape }}</figcaption>
+                    <figcaption class="facelift-ba__author">{{ block.settings.author | escape }}</figcaption>
                   {%- endif -%}
                 </figure>
               {%- endif -%}
@@ -115,7 +115,7 @@
                   {% else %}
                     role="link" aria-disabled="true"
                   {% endif %}
-                  class="stamp-ba__link link underlined-link"
+                  class="facelift-ba__link link underlined-link"
                   {{ block.shopify_attributes }}
                 >
                   {{ block.settings.label | escape }}
@@ -134,9 +134,9 @@
       'before-after-slider',
       class BeforeAfterSlider extends HTMLElement {
         connectedCallback() {
-          const range = this.querySelector('.stamp-ba__range');
+          const range = this.querySelector('.facelift-ba__range');
           if (!range) return;
-          const update = () => this.style.setProperty('--stamp-ba-pos', range.value + '%');
+          const update = () => this.style.setProperty('--facelift-ba-pos', range.value + '%');
           range.addEventListener('input', update);
           update();
         }
@@ -147,7 +147,7 @@
 
 {% schema %}
 {
-  "name": "Stamp before / after",
+  "name": "Facelift before / after",
   "tag": "section",
   "class": "section",
   "blocks": [
@@ -247,7 +247,7 @@
       "type": "text",
       "id": "before_alt",
       "label": "Before image description",
-      "default": "Eyebrow before using the stamp"
+      "default": "Face before using the device"
     },
     {
       "type": "text",
@@ -264,13 +264,13 @@
       "type": "text",
       "id": "after_alt",
       "label": "After image description",
-      "default": "Eyebrow after one press of the stamp"
+      "default": "Face after one session with the device"
     },
     {
       "type": "text",
       "id": "after_label",
       "label": "After label",
-      "default": "One stamp later"
+      "default": "One session later"
     },
     {
       "type": "range",
@@ -306,7 +306,7 @@
       "type": "color_scheme",
       "id": "color_scheme",
       "label": "Color scheme",
-      "default": "scheme-stamp-cream"
+      "default": "scheme-facelift-blush"
     },
     {
       "type": "range",
@@ -331,7 +331,7 @@
   ],
   "presets": [
     {
-      "name": "Stamp before / after"
+      "name": "Facelift before / after"
     }
   ]
 }

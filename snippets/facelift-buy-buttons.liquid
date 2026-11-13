@@ -1,7 +1,7 @@
 {% doc %}
   Renders a product form with add-to-cart and dynamic checkout buttons.
 
-  Nookly copy of buy-buttons for the eyebrow stamp page: the button text can show the selected kit size and its price.
+  Nookly copy of buy-buttons for the facelift device page: the button text can show the selected kit size and its price.
 
   @param {block} block - The buy-buttons block, whose settings control the form and whose attributes are added to the wrapper.
   @param {product} product - The product to purchase.
@@ -96,18 +96,18 @@
                 {{ 'products.product.sold_out' | t }}
               {%- else -%}
                 {%- liquid
-                  assign stamp_variant = product.selected_or_first_available_variant
-                  assign stamp_kit_value = null
-                  assign stamp_kit_name = kit_option_name | downcase
+                  assign facelift_variant = product.selected_or_first_available_variant
+                  assign facelift_kit_value = null
+                  assign facelift_kit_name = kit_option_name | downcase
                   for option in product.options_with_values
-                    assign stamp_option_name = option.name | downcase
-                    if stamp_option_name == stamp_kit_name
-                      assign stamp_kit_value = stamp_variant.options[forloop.index0]
+                    assign facelift_option_name = option.name | downcase
+                    if facelift_option_name == facelift_kit_name
+                      assign facelift_kit_value = facelift_variant.options[forloop.index0]
                     endif
                   endfor
                 -%}
-                {%- if stamp_kit_value != blank and button_template != blank -%}
-                  {{- button_template | replace: '[kit]', stamp_kit_value | replace: '[price]', stamp_variant.price | money -}}
+                {%- if facelift_kit_value != blank and button_template != blank -%}
+                  {{- button_template | replace: '[kit]', facelift_kit_value | replace: '[price]', facelift_variant.price | money -}}
                 {%- else -%}
                   {{ 'products.product.add_to_cart' | t }}
                 {%- endif -%}

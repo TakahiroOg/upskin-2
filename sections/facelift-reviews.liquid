@@ -1,10 +1,10 @@
 {% comment %}
-  Nookly: customer reviews section (new, for templates/product.eyebrow-stamp.json).
+  Nookly: customer reviews section (new, for templates/product.facelift-device.json).
   - Summary: average rating and review count are read from the product's reviews.rating and
     reviews.rating_count metafields (the standard Shopify reviews metafields), so nothing is made up.
   - "App block": drop a reviews app (Judge.me, Loox, Shopify Product Reviews...) here to show its list / form.
   - "Review" blocks: hand-added reviews, shown as cards. Only add real customer reviews.
-  Styles live in assets/stamp.css.
+  Styles live in assets/facelift.css.
 {% endcomment %}
 
 {%- style -%}
@@ -28,24 +28,24 @@
   assign other_blocks = section.blocks | where: 'type', '@app'
 -%}
 
-<div id="reviews" class="stamp-reviews section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}">
+<div id="reviews" class="facelift-reviews section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}">
   <div class="page-width">
     {%- if section.settings.heading != blank -%}
-      <h2 class="stamp-reviews__heading inline-richtext {{ section.settings.heading_size }}">{{ section.settings.heading }}</h2>
+      <h2 class="facelift-reviews__heading inline-richtext {{ section.settings.heading_size }}">{{ section.settings.heading }}</h2>
     {%- endif -%}
 
     {%- if rating_value != blank -%}
-      <div class="stamp-reviews__summary">
-        <div class="stamp-reviews__score">
-          <span class="stamp-reviews__avg">{{ rating_value.rating }}</span>
+      <div class="facelift-reviews__summary">
+        <div class="facelift-reviews__score">
+          <span class="facelift-reviews__avg">{{ rating_value.rating }}</span>
           <div>
             <div
-              class="stamp-stars"
+              class="facelift-stars"
               role="img"
               aria-label="{{ 'accessibility.star_reviews_info' | t: rating_value: rating_value.rating, rating_max: rating_value.scale_max }}"
-              style="--stamp-rating: {{ rating_value.rating }};"
+              style="--facelift-rating: {{ rating_value.rating }};"
             ></div>
-            <p class="stamp-reviews__count">
+            <p class="facelift-reviews__count">
               {%- if rating_count != blank -%}
                 {{ section.settings.count_text | replace: '[count]', rating_count }}
               {%- endif -%}
@@ -59,7 +59,7 @@
             {% else %}
               role="link" aria-disabled="true"
             {% endif %}
-            class="button button--secondary stamp-reviews__button"
+            class="button button--secondary facelift-reviews__button"
           >
             {{ section.settings.button_label | escape }}
           </a>
@@ -68,34 +68,34 @@
     {%- endif -%}
 
     {%- for block in other_blocks -%}
-      <div class="stamp-reviews__app" {{ block.shopify_attributes }}>
+      <div class="facelift-reviews__app" {{ block.shopify_attributes }}>
         {% render block %}
       </div>
     {%- endfor -%}
 
     {%- if review_blocks.size > 0 -%}
-      <ul class="stamp-reviews__list" role="list">
+      <ul class="facelift-reviews__list" role="list">
         {%- for block in review_blocks -%}
           {%- if block.settings.text != blank -%}
-            <li class="stamp-review" {{ block.shopify_attributes }}>
-              <div class="stamp-review__top">
+            <li class="facelift-review" {{ block.shopify_attributes }}>
+              <div class="facelift-review__top">
                 <div
-                  class="stamp-stars"
+                  class="facelift-stars"
                   role="img"
                   aria-label="{{ 'accessibility.star_reviews_info' | t: rating_value: block.settings.rating, rating_max: 5 }}"
-                  style="--stamp-rating: {{ block.settings.rating }};"
+                  style="--facelift-rating: {{ block.settings.rating }};"
                 ></div>
                 {%- if block.settings.verified -%}
-                  <span class="stamp-review__verified">{{ section.settings.verified_text | escape }}</span>
+                  <span class="facelift-review__verified">{{ section.settings.verified_text | escape }}</span>
                 {%- endif -%}
               </div>
               {%- if block.settings.title != blank -%}
-                <h3 class="stamp-review__title h4">{{ block.settings.title | escape }}</h3>
+                <h3 class="facelift-review__title h4">{{ block.settings.title | escape }}</h3>
               {%- endif -%}
-              <div class="stamp-review__body rte">{{ block.settings.text }}</div>
-              <div class="stamp-review__footer">
+              <div class="facelift-review__body rte">{{ block.settings.text }}</div>
+              <div class="facelift-review__footer">
                 {%- if block.settings.image != blank -%}
-                  <div class="stamp-review__photo">
+                  <div class="facelift-review__photo">
                     {{
                       block.settings.image
                       | image_url: width: 240
@@ -104,7 +104,7 @@
                   </div>
                 {%- endif -%}
                 {%- if block.settings.author != blank -%}
-                  <p class="stamp-review__author">{{ block.settings.author | escape }}</p>
+                  <p class="facelift-review__author">{{ block.settings.author | escape }}</p>
                 {%- endif -%}
               </div>
             </li>
@@ -112,7 +112,7 @@
         {%- endfor -%}
       </ul>
     {%- elsif rating_value == blank and other_blocks.size == 0 and request.design_mode -%}
-      <p class="stamp-reviews__empty">
+      <p class="facelift-reviews__empty">
         Add a reviews app block, or Review blocks with real customer reviews. The rating summary appears
         automatically once the product has a reviews.rating metafield.
       </p>
@@ -122,7 +122,7 @@
 
 {% schema %}
 {
-  "name": "Stamp reviews",
+  "name": "Facelift reviews",
   "tag": "section",
   "class": "section",
   "blocks": [
@@ -217,7 +217,7 @@
       "type": "color_scheme",
       "id": "color_scheme",
       "label": "Color scheme",
-      "default": "scheme-stamp-cream"
+      "default": "scheme-facelift-blush"
     },
     {
       "type": "range",
@@ -242,7 +242,7 @@
   ],
   "presets": [
     {
-      "name": "Stamp reviews"
+      "name": "Facelift reviews"
     }
   ]
 }

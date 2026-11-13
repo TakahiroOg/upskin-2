@@ -1,0 +1,123 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "layout": "theme.facelift",
+  "sections": {
+    "main": {
+      "type": "facelift-main-product",
+      "blocks": {
+        "rating": {
+          "type": "rating",
+          "settings": {}
+        },
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Even, full brows <em>in one stamp.</em>",
+            "heading_size": "h1"
+          }
+        },
+        "subheading": {
+          "type": "text",
+          "settings": {
+            "text": "Press the stamp into the powder, press it on your brow, and both sides match. Soft and natural-looking, and it stays put through sweat and rain.",
+            "text_style": "subtitle"
+          }
+        },
+        "checklist": {
+          "type": "checklist",
+          "settings": {
+            "list": "<ul><li>Both brows the same shape, every time</li><li>Soft and natural-looking, not drawn on</li><li>Waterproof and sweat-proof, so it stays on all day</li><li>Done in about a minute, no skill needed</li></ul>"
+          }
+        },
+        "variant-picker": {
+          "type": "variant_picker",
+          "settings": {
+            "swatch_shape": "circle",
+            "swatch_option_name": "Color",
+            "kit_option_name": "Kits",
+            "kit_legend": "How many would you like?",
+            "save_text": "You save",
+            "deal_1": "",
+            "subtitle_1": "About a month · $4.99 shipping",
+            "badge_1": "",
+            "deal_2": "1 Kit free",
+            "subtitle_2": "3 months · Free shipping",
+            "badge_2": "Our pick",
+            "deal_3": "2 Kits free",
+            "subtitle_3": "5 months · Free shipping",
+            "badge_3": "Best value",
+            "deal_4": "",
+            "subtitle_4": "",
+            "badge_4": ""
+          }
+        },
+        "buy-buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": false,
+            "button_template": "Add [kit] to cart · [price]"
+          }
+        },
+        "payments": {
+          "type": "payments",
+          "settings": {
+            "secure_text": "Secure, encrypted checkout"
+          }
+        },
+        "trust": {
+          "type": "trust",
+          "settings": {
+            "icon_1": "truck",
+            "text_1": "Free shipping",
+            "icon_2": "stopwatch",
+            "text_2": "",
+            "icon_3": "heart",
+            "text_3": "30-Day Happiness Promise"
+          }
+        }
+      },
+      "block_order": [
+        "rating",
+        "title",
+        "heading",
+        "subheading",
+        "checklist",
+        "variant-picker",
+        "buy-buttons",
+        "payments",
+        "trust"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "color_scheme": "scheme-facelift-white",
+        "media_size": "medium",
+        "constrain_to_viewport": true,
+        "media_fit": "cover",
+        "gallery_layout": "thumbnail",
+        "mobile_thumbnails": "hide",
+        "media_position": "left",
+        "image_zoom": "none",
+        "hide_variants": false,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}
