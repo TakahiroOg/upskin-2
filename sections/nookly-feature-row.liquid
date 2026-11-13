@@ -1,0 +1,304 @@
+{% comment %}
+  Nookly: two-column feature row (media + heading + text + optional button).
+  Based on the layout of sections/image-with-text.liquid, with a looping, muted, autoplay video as an option.
+
+  Media priority:
+    1. "Video" setting (video uploaded to Shopify)
+    2. "Image" setting
+    3. Bundled media: assets/<bundled name>.jpg (a still image), or assets/<bundled name>.mp4 when
+       "Bundled media type" is Video (the .jpg is then the poster)
+    4. Theme placeholder image
+  Styles live in assets/nookly-deskwarm.css (loaded by layout/theme.nookly.liquid).
+{% endcomment %}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="nookly-feature section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}">
+  <div class="page-width">
+    <div class="nookly-feature__grid{% if section.settings.layout == 'text_first' %} nookly-feature__grid--reverse{% endif %}">
+      <div class="nookly-feature__media global-media-settings">
+        {%- if section.settings.video != blank -%}
+          {{
+            section.settings.video
+            | video_tag:
+              image_size: '1100x',
+              autoplay: true,
+              loop: true,
+              muted: true,
+              controls: false,
+              class: 'nookly-feature__video'
+          }}
+        {%- elsif section.settings.image != blank -%}
+          {{
+            section.settings.image
+            | image_url: width: 1500
+            | image_tag:
+              sizes: '(min-width: 1200px) 560px, (min-width: 750px) 45vw, 100vw',
+              widths: '360, 535, 750, 1070, 1500',
+              loading: 'lazy',
+              class: 'nookly-feature__image'
+          }}
+        {%- elsif section.settings.bundled_name != blank -%}
+          {%- assign bundled_poster = section.settings.bundled_name | append: '.jpg' -%}
+          {%- if section.settings.bundled_type == 'video' -%}
+            {%- assign bundled_video = section.settings.bundled_name | append: '.mp4' -%}
+            <video
+              class="nookly-feature__video"
+              autoplay
+              muted
+              loop
+              playsinline
+              preload="metadata"
+              poster="{{ bundled_poster | asset_url }}"
+              aria-label="{{ section.settings.media_alt | escape }}"
+            >
+              <source src="{{ bundled_video | asset_url }}" type="video/mp4">
+            </video>
+          {%- else -%}
+            <img
+              src="{{ bundled_poster | asset_url }}"
+              alt="{{ section.settings.media_alt | escape }}"
+              class="nookly-feature__image"
+              width="1024"
+              height="1024"
+              loading="lazy"
+            >
+          {%- endif -%}
+        {%- else -%}
+          <div class="nookly-feature__placeholder placeholder">
+            {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+          </div>
+        {%- endif -%}
+      </div>
+
+      <div class="nookly-feature__content">
+        {%- for block in section.blocks -%}
+          {%- case block.type -%}
+            {%- when 'heading' -%}
+              <h2 class="nookly-feature__heading inline-richtext {{ block.settings.heading_size }}" {{ block.shopify_attributes }}>
+                {{ block.settings.heading }}
+              </h2>
+            {%- when 'text' -%}
+              <div class="nookly-feature__text rte" {{ block.shopify_attributes }}>
+                {{ block.settings.text }}
+              </div>
+            {%- when 'button' -%}
+              {%- if block.settings.button_label != blank -%}
+                <a
+                  {% if block.settings.button_link == blank %}
+                    role="link" aria-disabled="true"
+                  {% else %}
+                    href="{{ block.settings.button_link }}"
+                  {% endif %}
+                  class="nookly-feature__button button{% if block.settings.button_style_secondary %} button--secondary{% else %} button--primary{% endif %}"
+                  {{ block.shopify_attributes }}
+                >
+                  {{ block.settings.button_label | escape }}
+                </a>
+              {%- endif -%}
+          {%- endcase -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    // Respect "reduce motion": show the first frame instead of a looping clip.
+    if (!window.matchMedia || !window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    document
+      .querySelectorAll('#shopify-section-{{ section.id }} video')
+      .forEach(function (video) {
+        video.removeAttribute('autoplay');
+        video.pause();
+      });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Nookly feature row",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Video",
+      "info": "Plays muted and on a loop. Takes priority over the image."
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "bundled_name",
+      "label": "Bundled media name",
+      "info": "Used when no video or image is set. Name of a file in the theme assets without the extension, e.g. nookly-feature-relief (needs a .jpg, and an .mp4 too for video)."
+    },
+    {
+      "type": "select",
+      "id": "bundled_type",
+      "label": "Bundled media type",
+      "options": [
+        {
+          "value": "image",
+          "label": "Image (.jpg)"
+        },
+        {
+          "value": "video",
+          "label": "Looping video (.mp4)"
+        }
+      ],
+      "default": "image"
+    },
+    {
+      "type": "text",
+      "id": "media_alt",
+      "label": "Description of the bundled media",
+      "default": "A DeskWarm heated seat cushion in a cozy winter room"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Desktop layout",
+      "options": [
+        {
+          "value": "image_first",
+          "label": "Media left, text right"
+        },
+        {
+          "value": "text_first",
+          "label": "Text left, media right"
+        }
+      ],
+      "default": "image_first"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 44
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 44
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "name": "Heading",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Feature heading"
+        },
+        {
+          "type": "select",
+          "id": "heading_size",
+          "label": "Heading size",
+          "options": [
+            {
+              "value": "h2",
+              "label": "Small"
+            },
+            {
+              "value": "h1",
+              "label": "Medium"
+            },
+            {
+              "value": "h0",
+              "label": "Large"
+            }
+          ],
+          "default": "h1"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Text",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Describe the benefit here.</p>"
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "name": "Button",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link"
+        },
+        {
+          "type": "checkbox",
+          "id": "button_style_secondary",
+          "label": "Use outline button style",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Nookly feature row",
+      "blocks": [
+        {
+          "type": "heading"
+        },
+        {
+          "type": "text"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

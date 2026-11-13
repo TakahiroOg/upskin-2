@@ -1,0 +1,343 @@
+{% comment %}
+  Nookly: hero section. Based on sections/image-with-text.liquid.
+  Adds: a bold heading + lighter sub-heading, a customer-quote card with avatar,
+  and feature "callout" labels floating around the image.
+  If no image is chosen it falls back to assets/nookly-hero-woman.png.
+  Styles live in assets/nookly-deskwarm.css (loaded by layout/theme.nookly.liquid).
+{% endcomment %}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="nookly-hero section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}">
+  <div class="page-width">
+    <div class="nookly-hero__grid{% if section.settings.layout == 'image_first' %} nookly-hero__grid--reverse{% endif %}">
+      <div class="nookly-hero__content nookly-hero__content--{{ section.settings.mobile_content_alignment }}">
+        {%- for block in section.blocks -%}
+          {%- case block.type -%}
+            {%- when 'caption' -%}
+              <p class="nookly-hero__caption caption-with-letter-spacing" {{ block.shopify_attributes }}>
+                {{ block.settings.caption | escape }}
+              </p>
+            {%- when 'heading' -%}
+              <h2 class="nookly-hero__heading inline-richtext {{ block.settings.heading_size }}" {{ block.shopify_attributes }}>
+                {{ block.settings.heading }}
+              </h2>
+            {%- when 'subheading' -%}
+              <p
+                class="nookly-hero__subheading nookly-hero__subheading--{{ block.settings.size }} inline-richtext"
+                {{ block.shopify_attributes }}
+              >
+                {{ block.settings.text }}
+              </p>
+            {%- when 'text' -%}
+              <div class="nookly-hero__text rte" {{ block.shopify_attributes }}>
+                {{ block.settings.text }}
+              </div>
+            {%- when 'button' -%}
+              {%- if block.settings.button_label != blank -%}
+                <a
+                  {% if block.settings.button_link == blank %}
+                    role="link" aria-disabled="true"
+                  {% else %}
+                    href="{{ block.settings.button_link }}"
+                  {% endif %}
+                  class="nookly-hero__button button{% if block.settings.button_style_secondary %} button--secondary{% else %} button--primary{% endif %}"
+                  {{ block.shopify_attributes }}
+                >
+                  {{ block.settings.button_label | escape }}
+                </a>
+              {%- endif -%}
+            {%- when 'quote' -%}
+              <figure
+                class="nookly-hero__quote gradient color-{{ section.settings.quote_color_scheme }}"
+                {{ block.shopify_attributes }}
+              >
+                <div class="nookly-hero__avatar{% if block.settings.image == blank %} nookly-hero__avatar--placeholder{% endif %}">
+                  {%- if block.settings.image != blank -%}
+                    {{
+                      block.settings.image
+                      | image_url: width: 200
+                      | image_tag: widths: '100, 200', sizes: '64px', loading: 'lazy', alt: block.settings.author
+                    }}
+                  {%- endif -%}
+                </div>
+                <blockquote class="nookly-hero__quote-body">
+                  <div class="rte">{{ block.settings.text }}</div>
+                  {%- if block.settings.author != blank -%}
+                    <figcaption class="nookly-hero__quote-author">{{ block.settings.author | escape }}</figcaption>
+                  {%- endif -%}
+                </blockquote>
+              </figure>
+          {%- endcase -%}
+        {%- endfor -%}
+      </div>
+
+      <div class="nookly-hero__media-wrap">
+        {%- if section.settings.warm_glow -%}
+          <div class="nookly-hero__glow" aria-hidden="true"></div>
+        {%- endif -%}
+        <div class="nookly-hero__media nookly-hero__media--{{ section.settings.image_shape }} global-media-settings">
+          {%- if section.settings.image != blank -%}
+            {{
+              section.settings.image
+              | image_url: width: 1500
+              | image_tag:
+                sizes: '(min-width: 1200px) 560px, (min-width: 750px) 45vw, 100vw',
+                widths: '360, 535, 750, 1070, 1500',
+                fetchpriority: 'high',
+                class: 'nookly-hero__image'
+            }}
+          {%- else -%}
+            <img
+              src="{{ 'nookly-hero-woman.png' | asset_url }}"
+              alt="{{ section.settings.fallback_alt | escape }}"
+              class="nookly-hero__image"
+              width="1200"
+              height="1200"
+              fetchpriority="high"
+            >
+          {%- endif -%}
+          {%- if section.settings.seat_glow -%}
+            <div class="nookly-hero__seat-glow" aria-hidden="true"></div>
+          {%- endif -%}
+        </div>
+
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'callout' -%}
+            <p
+              class="nookly-hero__callout nookly-hero__callout--{{ block.settings.position }}"
+              {{ block.shopify_attributes }}
+            >
+              <span class="nookly-hero__check" aria-hidden="true">
+                <svg viewBox="0 0 20 20" width="20" height="20" focusable="false"><circle cx="10" cy="10" r="10" fill="currentColor"/><path d="M5.5 10.4l3 3 6-6.4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              <span>{{ block.settings.text | escape }}</span>
+            </p>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Nookly hero",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image",
+      "info": "Leave empty to use the bundled DeskWarm hero photo."
+    },
+    {
+      "type": "text",
+      "id": "fallback_alt",
+      "label": "Image description (bundled photo)",
+      "default": "A relaxed woman sitting on a chair with a DeskWarm heated seat cushion"
+    },
+    {
+      "type": "select",
+      "id": "image_shape",
+      "label": "Image shape",
+      "options": [
+        { "value": "cutout", "label": "Cut-out (transparent image, no frame)" },
+        { "value": "rounded", "label": "Rounded" },
+        { "value": "circle", "label": "Circle" }
+      ],
+      "default": "cutout"
+    },
+    {
+      "type": "checkbox",
+      "id": "warm_glow",
+      "label": "Warm glow behind the image",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "seat_glow",
+      "label": "Glowing heat spot on the seat",
+      "default": true,
+      "info": "Placed for the bundled photo. Turn off if you use a different image."
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Desktop layout",
+      "options": [
+        { "value": "text_first", "label": "Text left, image right" },
+        { "value": "image_first", "label": "Image left, text right" }
+      ],
+      "default": "text_first"
+    },
+    {
+      "type": "select",
+      "id": "mobile_content_alignment",
+      "label": "Mobile text alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "color_scheme",
+      "id": "quote_color_scheme",
+      "label": "Quote card color scheme",
+      "default": "scheme-2"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 28
+    }
+  ],
+  "blocks": [
+    {
+      "type": "caption",
+      "name": "Caption",
+      "limit": 1,
+      "settings": [
+        { "type": "text", "id": "caption", "label": "Caption", "default": "Home comfort, made simple" }
+      ]
+    },
+    {
+      "type": "heading",
+      "name": "Heading",
+      "limit": 1,
+      "settings": [
+        { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Say goodbye to cold seats!" },
+        {
+          "type": "select",
+          "id": "heading_size",
+          "label": "Heading size",
+          "options": [
+            { "value": "h2", "label": "Small" },
+            { "value": "h1", "label": "Medium" },
+            { "value": "h0", "label": "Large" }
+          ],
+          "default": "h0"
+        }
+      ]
+    },
+    {
+      "type": "subheading",
+      "name": "Sub-heading",
+      "limit": 1,
+      "settings": [
+        { "type": "inline_richtext", "id": "text", "label": "Text", "default": "Say hello to cozy warmth, wherever you sit." },
+        {
+          "type": "select",
+          "id": "size",
+          "label": "Size",
+          "options": [
+            { "value": "medium", "label": "Medium" },
+            { "value": "large", "label": "Large" }
+          ],
+          "default": "large"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Text",
+      "limit": 1,
+      "settings": [
+        { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Room heating never quite reaches your seat. DeskWarm does.</p>" }
+      ]
+    },
+    {
+      "type": "button",
+      "name": "Button",
+      "limit": 1,
+      "settings": [
+        { "type": "text", "id": "button_label", "label": "Button label", "default": "Shop DeskWarm" },
+        { "type": "url", "id": "button_link", "label": "Button link" },
+        { "type": "checkbox", "id": "button_style_secondary", "label": "Use outline button style", "default": false }
+      ]
+    },
+    {
+      "type": "quote",
+      "name": "Customer quote",
+      "limit": 1,
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Customer photo" },
+        { "type": "richtext", "id": "text", "label": "Quote", "default": "<p>Featured customer review goes here.</p>" },
+        { "type": "text", "id": "author", "label": "Name", "default": "First name L." }
+      ]
+    },
+    {
+      "type": "callout",
+      "name": "Image callout",
+      "limit": 4,
+      "settings": [
+        { "type": "text", "id": "text", "label": "Text", "default": "Warm in minutes" },
+        {
+          "type": "select",
+          "id": "position",
+          "label": "Position on the image",
+          "options": [
+            { "value": "top-left", "label": "Top left" },
+            { "value": "top-right", "label": "Top right" },
+            { "value": "bottom-left", "label": "Bottom left" },
+            { "value": "bottom-right", "label": "Bottom right" }
+          ],
+          "default": "top-left"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Nookly hero",
+      "blocks": [
+        { "type": "caption" },
+        { "type": "heading" },
+        { "type": "subheading" },
+        { "type": "text" },
+        { "type": "button" },
+        { "type": "quote" }
+      ]
+    }
+  ]
+}
+{% endschema %}
