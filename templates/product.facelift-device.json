@@ -17,10 +17,6 @@
           "type": "rating",
           "settings": {}
         },
-        "title": {
-          "type": "title",
-          "settings": {}
-        },
         "heading": {
           "type": "heading",
           "settings": {
@@ -91,7 +87,6 @@
       },
       "block_order": [
         "rating",
-        "title",
         "heading",
         "subheading",
         "checklist",
@@ -253,21 +248,27 @@
           "type": "row",
           "settings": {
             "heading": "How long until I see results?",
-            "content": "<p>Many people notice a more lifted, refreshed look after the first session. For lasting results, use it 5 minutes a day, 3 to 5 times a week.</p>"
+            "content": "<p>Many people notice a more lifted, refreshed look after the first session. For lasting results, use it 5 minutes a day, 3 to 5 times a week.</p>",
+            "page": "",
+            "open": false
           }
         },
         "r2": {
           "type": "row",
           "settings": {
             "heading": "Does it hurt?",
-            "content": "<p>No. You should feel a light tingle or gentle muscle contraction. Start on the lowest level and increase only if it feels comfortable.</p>"
+            "content": "<p>No. You should feel a light tingle or gentle muscle contraction. Start on the lowest level and increase only if it feels comfortable.</p>",
+            "page": "",
+            "open": false
           }
         },
         "r3": {
           "type": "row",
           "settings": {
             "heading": "Do I need the conductive gel?",
-            "content": "<p>Yes. The gel helps the microcurrent travel evenly across your skin. It is included with your order.</p>"
+            "content": "<p>Yes. The gel helps the microcurrent travel evenly across your skin. It is included with your order.</p>",
+            "page": "",
+            "open": false
           }
         },
         "g2": {
@@ -280,21 +281,27 @@
           "type": "row",
           "settings": {
             "heading": "Is it safe for sensitive skin?",
-            "content": "<p>It is designed for gentle daily use. If you have a medical condition, a pacemaker or are pregnant, please check with your doctor first.</p>"
+            "content": "<p>It is designed for gentle daily use. If you have a medical condition, a pacemaker or are pregnant, please check with your doctor first.</p>",
+            "page": "",
+            "open": false
           }
         },
         "r5": {
           "type": "row",
           "settings": {
             "heading": "What if it does not work for me?",
-            "content": "<p>Try it for 60 days. If you are not happy with the results, contact us for a full refund.</p>"
+            "content": "<p>Try it for 60 days. If you are not happy with the results, contact us for a full refund.</p>",
+            "page": "",
+            "open": false
           }
         },
         "r6": {
           "type": "row",
           "settings": {
             "heading": "How long does shipping take?",
-            "content": "<p>Orders ship within 1 to 2 business days, and you will receive tracking as soon as your package is on its way.</p>"
+            "content": "<p>Orders ship within 1 to 2 business days, and you will receive tracking as soon as your package is on its way.</p>",
+            "page": "",
+            "open": false
           }
         }
       },
@@ -316,14 +323,13 @@
     },
     "reviews": {
       "type": "facelift-reviews",
-      "blocks": {},
-      "block_order": [],
       "settings": {
         "heading": "What our customers say",
         "heading_size": "h2",
         "count_text": "Based on [count] reviews",
         "verified_text": "Verified",
         "button_label": "Write a review",
+        "button_link": "",
         "color_scheme": "scheme-facelift-blush",
         "padding_top": 52,
         "padding_bottom": 52
